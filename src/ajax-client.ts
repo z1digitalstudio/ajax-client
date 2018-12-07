@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
-import { ajax, AjaxRequest } from 'rxjs/ajax';
+import { ajax } from 'rxjs/ajax';
 import { map } from 'rxjs/operators';
-import { Interceptors, AjaxClientResponse } from './types';
+import { Interceptors, AjaxClientResponse, AjaxClientRequest } from './types';
 
 export class AjaxClient {
   ajaxInstance = ajax;
@@ -11,23 +11,23 @@ export class AjaxClient {
     response: []
   };
 
-  get<T = object>(
+  get<T>(
     url: string,
-    options?: Partial<AjaxRequest>
+    options?: Partial<AjaxClientRequest<null>>
   ): Observable<AjaxClientResponse<T>> {
-    return this.request<T>({
+    return this.request<T, null>({
       url,
       method: 'GET',
       ...options
     });
   }
 
-  post<T = object, Y = object>(
+  post<T, Y>(
     url: string,
     body: Y,
-    options?: Partial<AjaxRequest>
+    options?: Partial<AjaxClientRequest<Y>>
   ): Observable<AjaxClientResponse<T>> {
-    return this.request<T>({
+    return this.request<T, Y>({
       url,
       body,
       method: 'POST',
@@ -35,12 +35,12 @@ export class AjaxClient {
     });
   }
 
-  put<T = object, Y = object>(
+  put<T, Y>(
     url: string,
     body: Y,
-    options?: Partial<AjaxRequest>
+    options?: Partial<AjaxClientRequest<Y>>
   ): Observable<AjaxClientResponse<T>> {
-    return this.request<T>({
+    return this.request<T, Y>({
       url,
       body,
       method: 'PUT',
@@ -48,12 +48,12 @@ export class AjaxClient {
     });
   }
 
-  patch<T = object, Y = object>(
+  patch<T, Y>(
     url: string,
     body: Y,
-    options?: Partial<AjaxRequest>
+    options?: Partial<AjaxClientRequest<Y>>
   ): Observable<AjaxClientResponse<T>> {
-    return this.request<T>({
+    return this.request<T, Y>({
       url,
       body,
       method: 'PATCH',
@@ -61,26 +61,26 @@ export class AjaxClient {
     });
   }
 
-  delete<T = object>(
+  delete<T, Y>(
     url: string,
-    options?: Partial<AjaxRequest>
+    options?: Partial<AjaxClientRequest<null>>
   ): Observable<AjaxClientResponse<T>> {
-    return this.request<T>({
+    return this.request<T, null>({
       url,
       method: 'DELETE',
       ...options
     });
   }
 
-  request<T = object>(
-    options: Partial<AjaxRequest>
+  request<T, Y>(
+    options: Partial<AjaxClientRequest<Y>>
   ): Observable<AjaxClientResponse<T>> {
-    return this.ajaxInstance(this.interceptRequest(options)).pipe(
+    return this.ajaxInstance(this.interceptRequest<Y>(options)).pipe(
       map(res => this.interceptResponse<T>(res as AjaxClientResponse<T>))
     );
   }
 
-  private interceptResponse<T = object>(
+  private interceptResponse<T>(
     response: AjaxClientResponse<T>
   ): AjaxClientResponse<T> {
     for (const interceptor of this.interceptors.response) {
@@ -89,9 +89,9 @@ export class AjaxClient {
     return response;
   }
 
-  private interceptRequest(
-    request: Partial<AjaxRequest>
-  ): Partial<AjaxRequest> {
+  private interceptRequest<T>(
+    request: Partial<AjaxClientRequest<T>>
+  ): Partial<AjaxClientRequest<T>> {
     for (const interceptor of this.interceptors.request) {
       request = interceptor(request);
     }

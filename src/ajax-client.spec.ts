@@ -1,7 +1,6 @@
-import { AjaxRequest } from 'rxjs/ajax';
 import { AjaxClient } from './ajax-client';
 import { of } from 'rxjs/internal/observable/of';
-import { AjaxClientResponse } from './types';
+import { AjaxClientResponse, AjaxClientRequest } from './types';
 
 describe('ajax-client.ts', () => {
   let ajaxClient: AjaxClient;
@@ -11,7 +10,7 @@ describe('ajax-client.ts', () => {
   });
 
   it('should call "ajaxInstance" on "request" method', () => {
-    const options: Partial<AjaxRequest> = {
+    const options: Partial<AjaxClientRequest> = {
       method: 'testMethod'
     };
     const mockedAjaxInstance = jest.fn();
@@ -24,7 +23,7 @@ describe('ajax-client.ts', () => {
   });
 
   it('should intercept requests', () => {
-    const options: Partial<AjaxRequest> = {
+    const options: Partial<AjaxClientRequest> = {
       method: 'testMethod'
     };
 
@@ -33,7 +32,7 @@ describe('ajax-client.ts', () => {
 
     mockedAjaxInstance.mockReturnValue(of(null));
 
-    const interceptor = (req: Partial<AjaxRequest>) => ({
+    const interceptor = (req: Partial<AjaxClientRequest>) => ({
       ...req,
       headers: {
         ...req.headers,
@@ -48,7 +47,7 @@ describe('ajax-client.ts', () => {
   });
 
   it('should intercept responses', done => {
-    const options: Partial<AjaxRequest> = {
+    const options: Partial<AjaxClientRequest> = {
       method: 'testMethod'
     };
 
@@ -71,7 +70,7 @@ describe('ajax-client.ts', () => {
   });
 
   it('should use "request" method to generate "get" requests', () => {
-    const options: Partial<AjaxRequest> = {
+    const options: Partial<AjaxClientRequest<null>> = {
       method: 'testMethod'
     };
     const url = 'www.test.com';
@@ -89,7 +88,7 @@ describe('ajax-client.ts', () => {
   });
 
   it('should use "request" method to generate "post" requests', () => {
-    const options: Partial<AjaxRequest> = {
+    const options: Partial<AjaxClientRequest> = {
       method: 'testMethod'
     };
     const body = { testBody: 'testBody' };
@@ -109,7 +108,7 @@ describe('ajax-client.ts', () => {
   });
 
   it('should use "request" method to generate "put" requests', () => {
-    const options: Partial<AjaxRequest> = {
+    const options: Partial<AjaxClientRequest> = {
       method: 'testMethod'
     };
     const body = { testBody: 'testBody' };
@@ -129,7 +128,7 @@ describe('ajax-client.ts', () => {
   });
 
   it('should use "request" method to generate "patch" requests', () => {
-    const options: Partial<AjaxRequest> = {
+    const options: Partial<AjaxClientRequest> = {
       method: 'testMethod'
     };
     const body = { testBody: 'testBody' };
@@ -149,7 +148,7 @@ describe('ajax-client.ts', () => {
   });
 
   it('should use "request" method to generate "delete" requests', () => {
-    const options: Partial<AjaxRequest> = {
+    const options: Partial<AjaxClientRequest<null>> = {
       method: 'testMethod'
     };
     const url = 'www.test.com';
@@ -164,5 +163,28 @@ describe('ajax-client.ts', () => {
       method: 'DELETE',
       ...options
     });
+  });
+
+  it('should accepts type definitions on request and options', done => {
+    /* Expectations are useless, tests is succesfull if transpiles without errors */
+    const body = { testBody: 'test' };
+    const options: Partial<AjaxClientRequest<typeof body>> = {
+      body
+    };
+
+    expect(options.body.testBody).toEqual('test');
+
+    const url = 'www.test.com';
+    const mockedResponse = { testResponse: 'response' };
+    const mockedRequestMethod = jest.fn();
+    ajaxClient.request = mockedRequestMethod;
+    mockedRequestMethod.mockReturnValue(of(mockedResponse));
+
+    ajaxClient
+      .post<typeof mockedResponse, typeof body>(url, body, options)
+      .subscribe(res => {
+        expect(res.response.testResponse).toEqual(mockedResponse);
+        done();
+      });
   });
 });
