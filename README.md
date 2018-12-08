@@ -7,6 +7,7 @@ Observable based HTTP client on top of [rxjs/ajax](https://rxjs-dev.firebaseapp.
 - [Ajax Client](#ajax-client)
   - [Table of contents](#table-of-contents)
   - [Installation](#installation)
+  - [Dependencies](#dependencies)
   - [API](#api)
     - [Get/Delete](#getdelete)
       - [Get example](#get-example)
@@ -24,7 +25,15 @@ Observable based HTTP client on top of [rxjs/ajax](https://rxjs-dev.firebaseapp.
 
 ## Installation
 
-...pending
+```bash
+npm i --save @commite/axios-client rxjs
+```
+
+## Dependencies
+
+```json
+"rxjs": "^6.3.3"
+```
 
 ## API
 
@@ -153,6 +162,7 @@ Ajax client is coded entirely in TypeScript with `target:'es5'`.
 - Maintaining 100% unit tests coverage and lintering.
 - [Gitflow](https://es.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
 - [Commit convention](https://karma-runner.github.io/3.0/dev/git-commit-msg.html)
+- [Semver](https://semver.org/spec/v2.0.0.html)
 
 ## License
 

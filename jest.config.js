@@ -12,5 +12,5 @@ module.exports = {
     'json',
     'node'
   ],
-  coverageReporters: ['json', 'html'],
+  coverageReporters: ['json', 'lcov', 'html'],
 }
