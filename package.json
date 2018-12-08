@@ -1,5 +1,5 @@
 {
-  "name": "ajax-client",
+  "name": "@commite/ajax-client",
   "version": "0.0.2",
   "description": "Observable based HTTP client on top of rxjs/ajax for browser and node.js.",
   "main": "./dist/index.js",
