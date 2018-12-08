@@ -2,6 +2,17 @@
   "name": "@commite/ajax-client",
   "version": "0.0.2",
   "description": "Observable based HTTP client on top of rxjs/ajax for browser and node.js.",
+  "keywords": [
+    "request",
+    "rxjs",
+    "xhr",
+    "http",
+    "client",
+    "ajax",
+    "observable",
+    "node",
+    "typescript"
+  ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.js",
   "scripts": {
