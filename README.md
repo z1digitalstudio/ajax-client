@@ -39,9 +39,9 @@ npm i --save @commite/ajax-client rxjs
 
 **Ajax client** uses [rxjs/ajax](https://rxjs-dev.firebaseapp.com/api/ajax/ajax) **API** to perform calls and returns [rxjs/observable](https://rxjs-dev.firebaseapp.com/guide/observable).
 
-All request accepts an [Ajax request options](https://rxjs-dev.firebaseapp.com/api/ajax/AjaxRequest), `post`, `put` and `patch` requests body param can also be typed, other way `object` type will be assumed.
+All request accepts an [Ajax request options](https://rxjs-dev.firebaseapp.com/api/ajax/AjaxRequest), `post`, `put` and `patch` requests body param can also be typed, other way `any` type will be assumed.
 
-All request returns an [Ajax response](https://rxjs-dev.firebaseapp.com/api/ajax/AjaxResponse), `response` param can also be typed, other way `object` type will be assumed.
+All request returns an [Ajax response](https://rxjs-dev.firebaseapp.com/api/ajax/AjaxResponse), `response` param can also be typed, other way `any` type will be assumed.
 
 ### Get/Delete
 
