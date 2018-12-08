@@ -165,8 +165,7 @@ describe('ajax-client.ts', () => {
     });
   });
 
-  it('should accepts type definitions on request and options', done => {
-    /* Expectations are useless, tests is succesfull if transpiles without errors */
+  it('should accepts both type definitions on request and options', done => {
     const body = { testBody: 'test' };
     const options: Partial<AjaxClientRequest<typeof body>> = {
       body
@@ -189,5 +188,55 @@ describe('ajax-client.ts', () => {
         expect(res.response.testResponse).toEqual(mockedResponse.testResponse);
         done();
       });
+  });
+
+  it('should handle untyped body', done => {
+    const body = { testBody: 'test' };
+    const options = {
+      body
+    };
+
+    expect(options.body.testBody).toEqual('test');
+
+    const url = 'www.test.com';
+    const mockedResponse = { testResponse: 'response' };
+    const mockedAjaxRespone: Partial<
+      AjaxClientResponse<typeof mockedResponse>
+    > = {
+      response: mockedResponse
+    };
+    const mockedRequestMethod = jest.fn();
+    ajaxClient.request = mockedRequestMethod;
+    mockedRequestMethod.mockReturnValue(of(mockedAjaxRespone));
+
+    ajaxClient
+      .post<typeof mockedResponse>(url, body, options)
+      .subscribe(res => {
+        expect(res.response.testResponse).toEqual(mockedResponse.testResponse);
+        done();
+      });
+  });
+
+  it('should handle untyped response and body', done => {
+    const body = { testBody: 'test' };
+    const options = {
+      body
+    };
+
+    expect(options.body.testBody).toEqual('test');
+
+    const url = 'www.test.com';
+    const mockedResponse = { testResponse: 'response' };
+    const mockedAjaxRespone = {
+      response: mockedResponse
+    };
+    const mockedRequestMethod = jest.fn();
+    ajaxClient.request = mockedRequestMethod;
+    mockedRequestMethod.mockReturnValue(of(mockedAjaxRespone));
+
+    ajaxClient.post(url, body, options).subscribe(res => {
+      expect(res.response.testResponse).toEqual(mockedResponse.testResponse);
+      done();
+    });
   });
 });

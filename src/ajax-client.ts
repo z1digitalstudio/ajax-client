@@ -11,7 +11,7 @@ export class AjaxClient {
     response: []
   };
 
-  get<T>(
+  get<T = any>(
     url: string,
     options?: Partial<AjaxClientRequest<null>>
   ): Observable<AjaxClientResponse<T>> {
@@ -22,7 +22,7 @@ export class AjaxClient {
     });
   }
 
-  post<T, Y>(
+  post<T = any, Y = any>(
     url: string,
     body: Y,
     options?: Partial<AjaxClientRequest<Y>>
@@ -35,7 +35,7 @@ export class AjaxClient {
     });
   }
 
-  put<T, Y>(
+  put<T = any, Y = any>(
     url: string,
     body: Y,
     options?: Partial<AjaxClientRequest<Y>>
@@ -48,7 +48,7 @@ export class AjaxClient {
     });
   }
 
-  patch<T, Y>(
+  patch<T = any, Y = any>(
     url: string,
     body: Y,
     options?: Partial<AjaxClientRequest<Y>>
@@ -61,7 +61,7 @@ export class AjaxClient {
     });
   }
 
-  delete<T, Y>(
+  delete<T = any>(
     url: string,
     options?: Partial<AjaxClientRequest<null>>
   ): Observable<AjaxClientResponse<T>> {
@@ -72,7 +72,7 @@ export class AjaxClient {
     });
   }
 
-  request<T, Y>(
+  request<T = any, Y = any>(
     options: Partial<AjaxClientRequest<Y>>
   ): Observable<AjaxClientResponse<T>> {
     return this.ajaxInstance(this.interceptRequest<Y>(options)).pipe(
@@ -80,7 +80,7 @@ export class AjaxClient {
     );
   }
 
-  private interceptResponse<T>(
+  private interceptResponse<T = any>(
     response: AjaxClientResponse<T>
   ): AjaxClientResponse<T> {
     for (const interceptor of this.interceptors.response) {
@@ -89,7 +89,7 @@ export class AjaxClient {
     return response;
   }
 
-  private interceptRequest<T>(
+  private interceptRequest<T = any>(
     request: Partial<AjaxClientRequest<T>>
   ): Partial<AjaxClientRequest<T>> {
     for (const interceptor of this.interceptors.request) {
