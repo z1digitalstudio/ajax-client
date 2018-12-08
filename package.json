@@ -1,6 +1,6 @@
 {
   "name": "@commite/ajax-client",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Observable based HTTP client on top of rxjs/ajax for browser and node.js.",
   "keywords": [
     "request",
