@@ -9,8 +9,8 @@ export interface AjaxClientRequest<T = object> extends AjaxRequest {
 }
 
 export type RequestInterceptor = (
-  options: Partial<AjaxRequest>
-) => Partial<AjaxRequest>;
+  options: Partial<AjaxClientRequest>
+) => Partial<AjaxClientRequest>;
 
 export type ResponseInterceptor = <T>(
   response: AjaxClientResponse<T>
