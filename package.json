@@ -1,6 +1,6 @@
 {
   "name": "@commite/ajax-client",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Observable based HTTP client on top of rxjs/ajax for browser and node.js.",
   "keywords": [
     "request",
@@ -14,7 +14,7 @@
     "typescript"
   ],
   "main": "./dist/ajax-client.js",
-  "types": "./dist/ajax-client.d.js",
+  "types": "./dist/ajax-client.d.ts",
   "scripts": {
     "build": "webpack",
     "lint": "tslint --project ./tsconfig.json ",
@@ -37,6 +37,7 @@
     "@types/jest": "^23.3.10",
     "clean-webpack-plugin": "^1.0.0",
     "codacy-coverage": "^3.3.0",
+    "dts-bundle-webpack": "^1.0.2",
     "duplicate-package-checker-webpack-plugin": "^3.0.0",
     "jest": "^23.6.0",
     "rxjs": "^6.3.3",
