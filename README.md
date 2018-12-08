@@ -106,12 +106,12 @@ Request and response could be intercepted.
 
 #### Request interceptor
 
-A request interceptor is a function that accepts a `Partial<AjaxClientRequest<T>>` object and returns a modified (or not) `Partial<AjaxClientRequest<T>>`.
+A request interceptor is a function that accepts a `Partial<AjaxClientRequest<any>>` object and returns a modified (or not) `Partial<AjaxClientRequest<any>>`.
 
 ```ts
-RequestInterceptor = <T>(
-  options: Partial<AjaxRequest<T>>
-) => Partial<AjaxRequest<T>>
+RequestInterceptor = (
+  options: Partial<AjaxRequest<any>>
+) => Partial<AjaxRequest<any>>
 ```
 
 Request interceptors can be managed through `ajaxClient.interceptors.request` array.
@@ -127,10 +127,10 @@ ajaxClient.interceptors.request.push(options => {
 
 #### Response interceptor
 
-A response interceptor is a function that accepts a `AjaxClientResponse<T>` object and returns a modified (or not) `AjaxClientResponse<T>`.
+A response interceptor is a function that accepts a `AjaxClientResponse<any>` object and returns a modified (or not) `AjaxClientResponse<any>`.
 
 ```ts
-ResponseInterceptor = <T>(response: AjaxClientResponse<T>) => AjaxClientResponse<T>;
+ResponseInterceptor = (response: AjaxClientResponse<any>) => AjaxClientResponse<any>;
 ```
 
 Response interceptors can be managed through `ajaxClient.interceptors.response` array.
