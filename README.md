@@ -26,7 +26,7 @@ Observable based HTTP client on top of [rxjs/ajax](https://rxjs-dev.firebaseapp.
 ## Installation
 
 ```bash
-npm i --save @commite/axios-client rxjs
+npm i --save @commite/ajax-client rxjs
 ```
 
 ## Dependencies
