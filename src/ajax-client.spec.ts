@@ -1,6 +1,9 @@
-import { AjaxClient } from './ajax-client';
+import {
+  AjaxClient,
+  AjaxClientResponse,
+  AjaxClientRequest
+} from './ajax-client';
 import { of } from 'rxjs/internal/observable/of';
-import { AjaxClientResponse, AjaxClientRequest } from './types';
 
 describe('ajax-client.ts', () => {
   let ajaxClient: AjaxClient;
