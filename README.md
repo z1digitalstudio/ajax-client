@@ -1,5 +1,9 @@
 # Ajax Client
 
+[![Build Status](https://travis-ci.org/commite/ajax-client.svg?branch=master)](https://travis-ci.org/commite/ajax-client)
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/751a612d76104a1aa82b7374a4e9ee4e)](https://www.codacy.com/app/karlos1337/ajax-client?utm_source=github.com&utm_medium=referral&utm_content=commite/ajax-client&utm_campaign=Badge_Coverage)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/751a612d76104a1aa82b7374a4e9ee4e)](https://www.codacy.com/app/karlos1337/ajax-client?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=commite/ajax-client&amp;utm_campaign=Badge_Grade)
+
 Observable based HTTP client on top of [rxjs/ajax](https://rxjs-dev.firebaseapp.com/api/ajax/ajax) for browser and node.js.
 
 ## Table of contents
