@@ -1,0 +1,18 @@
+language: node_js
+node_js: node
+
+before_script:
+  - npm run build
+
+script:
+  - npm run codacy:coverage
+
+deploy:
+  provider: npm
+  email: 'karlos1337@gmail.com'
+  api_key:
+    secure: iTu5aaeMplIDVifmOLdlwRKqaEc54f3yGc7NnMpajFqnGa2Q9ht6zn6/XtM1eXGzZ5E0R/6cQHQQRukMv132F/+qyYB4b71dA17+9lVTYQ5j654TVwur6Vg1XnaTWuZSEoNEdk5lkIH7acbp7H/7xpuSqIYB8032X7aWNiE9yRhkf8slb1RFDahOrwOZfdA4U/LfzN7r1iDEuunSsdJpuHRPbHXpxAt1vOVMll9XJ7JavWCIQr6bKwxrNE2L+Yrn3QsTlOCtOqbZcorlIR9ydoC9m+tZnngmUTc851HTzVfeT0MaW1O9+dREGpmHsLc0iRjHytiR6gnblH55Me8jFCe85uSEBrInl7LCTu/B0OTZ/brMOazX5wNAMaAZ51Thzm4R4AmTWy1HOvLR8ivuwiKSNak6MVJFMPssalfjmtEEmpdfUzvxqZZL3TuhXlBMOF2qY6SloPYrHH7DWD6VKlasz8yNV7zzH9h+xwLbwDvUMZXLbwRBgSxc/debLzhIy36o38ntuNXvQHIyk4n8Mhung8g0Mj1f2IF+H+XS933uP2/iiPrAed6DdfpypjVttK3QjKhO9c2gikBFgsSTuZ+gtwo8oZLj+Gv7IrZBfHCSrJnrZ+JbUdrkjr+xRrVWtRiQFgWFPb4yK8pm6I1AQgdRZNJp+qcyWdsyoAdIulA=
+  on:
+    branch: master
+  skip_cleanup: true
+  tag: latest
