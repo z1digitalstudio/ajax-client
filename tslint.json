@@ -19,6 +19,7 @@
     "no-inferrable-types": true,
     "member-access": [true, "no-public"],
     "no-console": false,
-    "typedef": [true, "call-signature"]
+    "typedef": [true, "call-signature"],
+    "cyclomatic-complexity": true
   }
 }
