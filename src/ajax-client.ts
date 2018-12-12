@@ -24,6 +24,10 @@ export interface Interceptors {
   response: ResponseInterceptor[];
 }
 
+export interface AjaxClientOptions {
+  baseUrl: string;
+}
+
 export class AjaxClient {
   ajaxInstance = ajax;
 
@@ -31,6 +35,17 @@ export class AjaxClient {
     request: [],
     response: []
   };
+
+  constructor(options?: Partial<AjaxClientOptions>) {
+    const baseUrl = options ? options.baseUrl : null;
+
+    if (baseUrl) {
+      this.interceptors.request.push(request => ({
+        ...request,
+        url: `${baseUrl}${request.url}`
+      }));
+    }
+  }
 
   get<T = any>(
     url: string,

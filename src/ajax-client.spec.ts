@@ -242,4 +242,23 @@ describe('ajax-client.ts', () => {
       done();
     });
   });
+
+  it('should add "baseUrl" to all request if is passed as constructor options param', () => {
+    const baseUrl = 'test-base-url.com';
+    ajaxClient = new AjaxClient({ baseUrl });
+
+    const options: Partial<AjaxClientRequest> = {
+      url: '/test-url'
+    };
+    const mockedAjaxInstance = jest.fn();
+    ajaxClient.ajaxInstance = mockedAjaxInstance as any;
+
+    mockedAjaxInstance.mockReturnValue(of(null));
+
+    ajaxClient.request(options);
+
+    expect(mockedAjaxInstance).toHaveBeenCalledWith({
+      url: `${baseUrl}${options.url}`
+    });
+  });
 });
