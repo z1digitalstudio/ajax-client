@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/commite/ajax-client.svg?branch=master)](https://travis-ci.org/commite/ajax-client)
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/c67608117ff44fbebb35765556260c3e)](https://www.codacy.com/app/karlos1337/ajax-client?utm_source=github.com&utm_medium=referral&utm_content=commite/ajax-client&utm_campaign=Badge_Coverage)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c67608117ff44fbebb35765556260c3e)](https://www.codacy.com/app/karlos1337/ajax-client?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=commite/ajax-client&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c67608117ff44fbebb35765556260c3e)](https://www.codacy.com/app/karlos1337/ajax-client?utm_source=github.com&utm_medium=referral&utm_content=commite/ajax-client&utm_campaign=Badge_Grade)
 
 Observable based HTTP client on top of [rxjs/ajax](https://rxjs-dev.firebaseapp.com/api/ajax/ajax) for browser and node.js.
 
@@ -13,6 +13,7 @@ Observable based HTTP client on top of [rxjs/ajax](https://rxjs-dev.firebaseapp.
   - [Installation](#installation)
   - [Dependencies](#dependencies)
   - [API](#api)
+    - [Config](#config)
     - [Get/Delete](#getdelete)
       - [Get example](#get-example)
     - [Post/Put/Patch](#postputpatch)
@@ -46,6 +47,25 @@ npm i --save @commite/ajax-client rxjs
 All request accepts an [Ajax request options](https://rxjs-dev.firebaseapp.com/api/ajax/AjaxRequest), `post`, `put` and `patch` requests body param can also be typed, other way `any` type will be assumed.
 
 All request returns an [Ajax response](https://rxjs-dev.firebaseapp.com/api/ajax/AjaxResponse), `response` param can also be typed, other way `any` type will be assumed.
+
+### Config
+
+A base url can be setted using library constructor.
+
+```ts
+const ajaxClient = new AjaxClient({
+  baseUrl: 'my-base-url.com'
+});
+```
+
+Equivalent to adding an interceptor like:
+
+```ts
+interceptors.request.push(request => ({
+  ...request,
+  url: `${baseUrl}${request.url}`
+}));
+```
 
 ### Get/Delete
 
