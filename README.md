@@ -1,6 +1,6 @@
 # Ajax Client
 
-[![Build Status](https://travis-ci.org/commite/ajax-client.svg?branch=master)](https://travis-ci.org/z1digitalstudio/ajax-client)
+[![Build Status](https://travis-ci.org/z1digitalstudio/ajax-client.svg?branch=master)](https://travis-ci.org/z1digitalstudio/ajax-client)
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/c67608117ff44fbebb35765556260c3e)](https://www.codacy.com/app/karlos1337/ajax-client?utm_source=github.com&utm_medium=referral&utm_content=commite/ajax-client&utm_campaign=Badge_Coverage)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c67608117ff44fbebb35765556260c3e)](https://www.codacy.com/app/karlos1337/ajax-client?utm_source=github.com&utm_medium=referral&utm_content=commite/ajax-client&utm_campaign=Badge_Grade)
 
